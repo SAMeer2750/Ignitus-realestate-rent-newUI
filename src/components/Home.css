@@ -6,6 +6,11 @@
 
 .card1 .symbol{
     border: solid 2px;
-    padding: 2px 6px 2px 6px ;
+    padding: 2px 7px 2px 7px ;
     border-radius: 5px;
+}
+
+.add{
+    font-size: 12px;
+    margin-top: -15px;
 }

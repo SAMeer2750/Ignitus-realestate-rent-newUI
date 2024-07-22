@@ -91,7 +91,7 @@ const Home = ({ factoryContract, tokenAbi, isConnected, account, signer, provide
                     </p>
                   </div>
 
-                <h6 className="text-blue-300 dark:text-blue-300"><small>{nft.address.toString().slice(0, 6)+"..."+nft.address.toString().slice(38, 42)}</small></h6>
+                <h6 className="text-blue-300 dark:text-blue-300 add"><small>{nft.address.toString().slice(0, 6)+"..."+nft.address.toString().slice(38, 42)}</small></h6>
 
                 <button  className="mt-4 w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-transform transform duration-300 bg-gradient-to-r from-blue-500 to-purple-600 border border-transparent rounded-lg shadow-lg hover:scale-105 hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
                 View
