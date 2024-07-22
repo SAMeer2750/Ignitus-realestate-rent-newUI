@@ -89,7 +89,7 @@ const Home = ({ factoryContract, tokenAbi, isConnected, account, signer, provide
                     <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 symbol">
                       #{nft.metadata.symbol.toString()}
                     </p>
-                  </div>
+                  </div> 
 
                 <h6 className="text-blue-300 dark:text-blue-300 add"><small>{nft.address.toString().slice(0, 6)+"..."+nft.address.toString().slice(38, 42)}</small></h6>
 
