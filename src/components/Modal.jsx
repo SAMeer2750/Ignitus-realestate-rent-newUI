@@ -1,6 +1,9 @@
 import './Modal.css'; // Create and style this CSS file as needed
 import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
+import { ReactSVG } from "react-svg";
+import polygonmatic from "../assests/polygon-matic.svg"
+import ether from "../assests/ether-crypto.svg"
 
 const Modal = ({ nft, onClose, factoryContract, network, account, tokenAbi, signer, provider }) => {
 
@@ -117,9 +120,9 @@ const Modal = ({ nft, onClose, factoryContract, network, account, tokenAbi, sign
         </div>
         <hr />
         <div className="modal-body mt-4">
-          <img className="w-full h-64 object-cover rounded-lg" src={`https://ipfs.io/ipfs/${nft.metadata.imageCID}`} alt="NFT" />
-
-          <div className="details">
+          <img className="image w-full h-64 object-cover rounded-lg" src={`https://ipfs.io/ipfs/${nft.metadata.imageCID}`} alt="NFT" />
+          <div className='right'>
+            <div className="details">
             <div className="side">
             <p className="mt-4 text-gray-600 dark:text-gray-400"><strong>Token Standars:</strong> ERC721</p>
             <p className="mt-2 text-gray-600 dark:text-gray-400"><strong>Total Supply:</strong> {nft.metadata.totalSupply}</p>
@@ -129,6 +132,15 @@ const Modal = ({ nft, onClose, factoryContract, network, account, tokenAbi, sign
             <p className="mt-2 text-gray-600 dark:text-gray-400"><strong>Available to rent:</strong> {available.toString()}</p>
           </div>
           </div>
+          {
+            !isOwner && (price!=0) ? (<>
+            <div className="price text-gray-600 dark:text-gray-400">Price: {(getRentInEth(price)/1e18).toFixed(5)} {network == "Seph"?(<div>
+                <div className="priceSymbol"><ReactSVG src={ether}/></div>
+              </div>):network == "Poly Amoy"?(<div>
+                <div className="priceSymbol"><ReactSVG src={polygonmatic}/></div>
+              </div>):(<></>)} | {price} USD</div>
+            </>):(<></>)
+          }
           {!isOwner && !allRented ?(<>
             <div className="rent-section mt-2">
             <div className="flex flex-col space-y-4">
@@ -162,12 +174,11 @@ const Modal = ({ nft, onClose, factoryContract, network, account, tokenAbi, sign
           </>) : !isOwner && allRented ?(<p className='text-gray-600 dark:text-gray-400'>
                 All tokens are rented in this collection.
               </p>):(<></>)}
-
-
-          <hr />
-          <p className="mt-2 text-gray-600 dark:text-gray-400"><strong>Description:</strong> {nft.metadata.description}</p>
+          </div>
 
         </div>
+        <hr />
+          <p className="mt-2 text-gray-600 dark:text-gray-400"><strong>Description:</strong> {nft.metadata.description}</p>
         <div className="modal-footer mt-6">
           <button onClick={onClose} className="px-4 py-2 text-sm font-medium leading-5 text-white transition-transform transform duration-300 bg-gradient-to-r from-blue-500 to-purple-600 border border-transparent rounded-lg shadow-lg hover:scale-105 hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
             Close
