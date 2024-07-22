@@ -3,6 +3,7 @@ import Info from './Info';
 import { toast } from 'react-toastify';
 import axios from "axios";
 import { ethers } from "ethers";
+import Modal from './Modal.jsx';
 import './Home.css'
 
 const Home = ({ factoryContract, tokenAbi, isConnected, account, signer, provider, network }) => {
@@ -93,7 +94,11 @@ const Home = ({ factoryContract, tokenAbi, isConnected, account, signer, provide
 
                 <h6 className="text-blue-300 dark:text-blue-300 add"><small>{nft.address.toString().slice(0, 6)+"..."+nft.address.toString().slice(38, 42)}</small></h6>
 
-                <button  className="mt-4 w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-transform transform duration-300 bg-gradient-to-r from-blue-500 to-purple-600 border border-transparent rounded-lg shadow-lg hover:scale-105 hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                <p className="mt-2 text-md text-gray-600 dark:text-gray-400 fraction">
+                  {nft.metadata.totalSupply.toString()} Fractions
+                </p>
+
+                <button onClick={()=>setSelectedNFT(nft)} className="mt-4 w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-transform transform duration-300 bg-gradient-to-r from-blue-500 to-purple-600 border border-transparent rounded-lg shadow-lg hover:scale-105 hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
                 View
                 <svg  
                 className="rtl:rotate-180 w-4 h-4 inline-block ml-2 -mt-px"
@@ -121,6 +126,18 @@ const Home = ({ factoryContract, tokenAbi, isConnected, account, signer, provide
             </main>
           )}
         </div>
+        {selectedNFT && (
+        <Modal 
+          nft={selectedNFT}
+          onClose={() => setSelectedNFT(null)} 
+          factoryContract={factoryContract}
+          network={network}
+          account={account}
+          tokenAbi={tokenAbi}
+          signer={signer}
+          provider={provider}
+        />
+      )}
     </>
 
 

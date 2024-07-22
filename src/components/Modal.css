@@ -1,0 +1,54 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-container {
+    width: 90%;
+    max-width: 600px;
+}
+
+.modal-body {
+    padding-top: 1rem;
+}
+
+.modal-body .details{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: max-content;
+}
+
+.modal-body .details .sides{
+    align-items: center;
+    margin: 0px;
+}
+
+.modal-overlay hr{
+    color: #e2e8f0;
+}
+
+.modal-footer {
+    text-align: right;
+}
+
+.input-part{
+    display: flex;
+}
+
+.input-part .input{
+    width: 50%;
+    margin-right: 5%;
+}
+
+.rent-section{
+    margin: 0px;
+}
