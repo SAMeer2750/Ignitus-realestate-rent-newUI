@@ -14,8 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Home from "./components/Home.jsx";
 import Create from "./components/Create.jsx";
 import Nav from "./components/Nav.jsx";
-import First from "./components/First.js";
-// import Modal from "./components/Modal.jsx";
+import First from "./components/First.jsx";
 import { ethers } from "ethers";
 import {
   Sepholia_ContractAddress,
@@ -61,7 +60,6 @@ function App() {
         setContract(contractInstance);
         setNetwork("Seph");
         console.log(`connected to ${chainId}`);
-        console.log(showModal);
       } else if (chainId === 80002) {
         contractInstance = new ethers.Contract(
           PloyAmoy_ContractAddress,
@@ -71,11 +69,20 @@ function App() {
         setContract(contractInstance);
         setNetwork("Poly Amoy");
         console.log(`connected to ${chainId}`);
-        console.log(showModal);
-      } else {
+      }
+      else if(chainId == 2442){
+        contractInstance = new ethers.Contract(
+          PolyZkEVM_ContractAddress,
+          contractFactoryAbi,
+          signer
+        );
+        setContract(contractInstance);
+        setNetwork("Poly ZkEVM");
+        console.log(`connected to ${chainId}`);
+      }
+      else {
         setNetwork("");
         setShowModal(true);
-        console.log(showModal);
       }
     }
   }
@@ -157,30 +164,41 @@ function App() {
           {showModal && (
             <Modal
               centered
-              size="md"
+              size="xl"
               show={showModal}
               onHide={() => setShowModal(false)}
             >
-              <ModalDialog>
+              <ModalDialog className="modalBox">
                 <ModalHeader closeButton>
                   <ModalTitle>Unsupported Network</ModalTitle>
                 </ModalHeader>
                 <ModalBody centered>
-                  <p>Please switch to a supported network:</p>
-                  <Button
-                    variant="primary"
-                    onClick={() => switchNetwork("sepholia")}
-                    className="button-modal"
-                  >
-                    Switch to Sepholia
-                  </Button>
+                  <div>
+                    <p>Please switch to a supported network:</p>
+                    <Button
+                      variant="primary"
+                      onClick={() => switchNetwork("sepholia")}
+                      className="button-modal"
+                    >
+                      Switch to Sepholia
+                    </Button>
 
-                  <Button
-                    variant="primary"
-                    onClick={() => switchNetwork("polygonAmoy")}
-                  >
-                    Switch to Polygon Amoy
-                  </Button>
+                    <Button
+                      variant="primary"
+                      onClick={() => switchNetwork("polygonAmoy")}
+                      className="button-modal"
+                    >
+                      Switch to Polygon Amoy
+                    </Button>
+
+                    <Button
+                      variant="primary"
+                      onClick={() => switchNetwork("polygonZkEVM")}
+                      className="button-modal"
+                    >
+                      Switch to Polygon ZkEVM
+                    </Button>
+                  </div>
                 </ModalBody>
               </ModalDialog>
             </Modal>

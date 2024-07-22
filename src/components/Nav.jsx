@@ -20,18 +20,21 @@ function Nav({ connectWallet, account, network, setShowModal, loading }) {
             <Link to="/home" className="no-underline text-gray-200 text-lg font-semibold transition-colors duration-300 hover:text-white hover:font-bold">Home</Link>
             <Link to="/create" className="no-underline text-gray-200 text-lg font-semibold transition-colors duration-300 hover:text-white hover:font-bold">Create</Link>
             {!account ? (
-              <button onClick={connectWallet} type="button" class="border-[0.5px] p-1 w-22  h-9 text-white bg-gradient-to-r from-purple-700 to-pink-800 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
-                <strong>Connect Wallet</strong>
+              <button onClick={connectWallet} type="button" className="connectWallet border-[0.5px] h-9 text-white bg-gradient-to-r from-purple-700 to-pink-800 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-md text-center me-2 mb-2">
+                Connect Wallet
                 </button>) : (
-              <button type="button" class="border-[0.5px] p-1 h-9 text-white bg-gradient-to-r from-purple-700 to-pink-800 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" id='connectWallet'>
+              <button type="button" className="connectWallet border-[0.5px] h-9 text-white bg-gradient-to-r from-purple-700 to-pink-800 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-md text-center me-2 mb-2" >
                 {network == "Seph"?(<div id="network" onClick={()=>{setShowModal(true)}}>
                 <div className="networkN">Sepolia</div>
                 <div>{<ReactSVG src={ether}/>}</div>
                 </div>):network == "Poly Amoy"?(<div id="network" onClick={()=>{setShowModal(true)}}>
                 <div className="networkN">{network}</div>
                 <div>{<ReactSVG src={polygonmatic}/>}</div>
+                </div>):network == "Poly ZkEVM"?(<div id="network" onClick={()=>{setShowModal(true)}}>
+                <div className="networkN">Poly Zk</div>
+                <div>{<ReactSVG src={polygonmatic}/>}</div>
                 </div>):(<></>)}
-                <strong>{account.slice(0, 6) + "..." + account.slice(38, 42)}</strong>
+                {account.slice(0, 6) + "..." + account.slice(38, 42)}
                 </button>)}
 
           </div>

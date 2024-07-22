@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
-import Info from './Info';
-import { toast } from 'react-toastify';
 import axios from "axios";
 import { ethers } from "ethers";
 import Modal from './Modal.jsx';
 import './Home.css'
+import DotLoader from 'react-spinners/DotLoader';
 
 const Home = ({ factoryContract, tokenAbi, isConnected, account, signer, provider, network }) => {
   const [nfts, setNfts] = useState([]);

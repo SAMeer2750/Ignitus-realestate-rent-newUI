@@ -27,6 +27,17 @@ const networks = {
     rpcUrls: ["https://polygon-amoy.drpc.org"],
     blockExplorerUrls: ["https://mumbai.polygonscan.com/"],
   },
+  polygonZkEVM: {
+    chainId: `0x${Number(2442).toString(16)}`,
+    chainName: "Polygon ZkEVM",
+    nativeCurrency: {
+      name: "ETH",
+      symbol: "ETH",
+      decimals: 18,
+    },
+    rpcUrls: ["https://rpc.cardona.zkevm-rpc.com"],
+    blockExplorerUrls: ["https://cardona-zkevm.polygonscan.com/"],
+  },
 };
 
 const tokenAbi = [
