@@ -86,7 +86,7 @@ const Home = ({ factoryContract, tokenAbi, isConnected, account, signer, provide
                 <div className="p-4">
                   <div className="card1">
                     <h5 className="text-xl font-semibold text-blue-600 dark:text-blue-400">{nft.metadata.name.toString()}</h5>
-                    <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 symbol">
+                    <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 tokenSymbol">
                       #{nft.metadata.symbol.toString()}
                     </p>
                   </div> 

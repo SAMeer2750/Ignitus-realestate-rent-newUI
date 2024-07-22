@@ -4,7 +4,7 @@
     justify-content: space-between;
 }
 
-.card1 .symbol{
+.card1 .tokenSymbol{
     border: solid 2px;
     padding: 2px 7px 2px 7px ;
     border-radius: 5px;
