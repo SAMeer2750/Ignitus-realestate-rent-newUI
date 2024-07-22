@@ -4,6 +4,7 @@ import { ethers } from "ethers";
 import { ReactSVG } from "react-svg";
 import polygonmatic from "../assests/polygon-matic.svg"
 import ether from "../assests/ether-crypto.svg"
+import DotLoader from 'react-spinners/DotLoader';
 
 const Modal = ({ nft, onClose, factoryContract, network, account, tokenAbi, signer, provider }) => {
 
@@ -17,11 +18,14 @@ const Modal = ({ nft, onClose, factoryContract, network, account, tokenAbi, sign
   const [rentalStatus, setRentalStatus] = useState({});
   const [price, setPrice] = useState(0)
   const [ETHvalue, setETHvalue] = useState(0)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
+    setLoading(true);
     getOwnerOfCollection(nft.address)
     getRentRecord()
     getLatestPriceOfEthInUsd()
+    setLoading(false);
   }, [account]);
 
   const getTokenInstance = async (tokenAddress)=>{
@@ -112,8 +116,13 @@ const Modal = ({ nft, onClose, factoryContract, network, account, tokenAbi, sign
   return (
     <div className="modal-overlay">
       <div className="modal-container bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg p-6">
+        
         <div className="modal-header flex justify-between items-center">
-          <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">{nft.metadata.name} | #{nft.metadata.symbol.toString()}</h2>
+            <div>
+                <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">{nft.metadata.name}  #{nft.metadata.symbol.toString()}</h2>
+                <h6 className='collection text-gray-600 dark:text-gray-400'>{nft.address.toString().slice(0, 6)+"..."+nft.address.toString().slice(38, 42)}</h6>
+          </div>
+          
           <button onClick={onClose} className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100">
             &times;
           </button>
@@ -170,15 +179,74 @@ const Modal = ({ nft, onClose, factoryContract, network, account, tokenAbi, sign
               </button>
                 </div>
             </div>
+            <hr />
+        <p className="mt-2 text-gray-600 dark:text-gray-400"><strong>Description:</strong> {nft.metadata.description}</p>
           </div>
-          </>) : !isOwner && allRented ?(<p className='text-gray-600 dark:text-gray-400'>
+          </>) : !isOwner && allRented ?(
+            <>
+            <hr/>
+        <p className="mt-2 text-gray-600 dark:text-gray-400"><strong>Description:</strong> {nft.metadata.description}</p>
+        <p className='text-gray-600 dark:text-gray-400'>
                 All tokens are rented in this collection.
-              </p>):(<></>)}
+              </p>
+            </>
+            ):(<>
+            <hr/>
+            <p className="mt-2 text-gray-600 dark:text-gray-400"><strong>Description:</strong> {nft.metadata.description}</p>
+              </>)}
           </div>
 
         </div>
-        <hr />
-          <p className="mt-2 text-gray-600 dark:text-gray-400"><strong>Description:</strong> {nft.metadata.description}</p>
+
+          <div className="mt-10 rent-records">
+          {rentRecord.length > 0 ? (
+            <table className="w-full">
+              <thead>
+                <tr>
+                  <th className="px-4 border-b border-t border-gray-300 py-2 text-center font-medium text-base text-gray-300"><strong>Token Id</strong></th>
+                  <th className="px-4 border-b border-t border-gray-300 py-2 text-center font-medium text-base text-gray-300"><strong>Rented by</strong></th>
+                  <th className="px-4 border-b border-t border-gray-300 py-2 text-center font-medium text-base text-gray-300"><strong>Vacate date (m/d/y)</strong></th>
+                  {isOwner && (
+                    <th className="px-4 border-b border-t border-gray-300 py-2 text-center font-medium text-base text-gray-300"><strong>Action</strong></th>
+                  )}
+                </tr>
+              </thead>
+              <tbody>
+                {rentRecord.map((item, index) => (
+                  <tr key={index}>
+                    <td className="px-4 py-2 border-b border-gray-400 text-center text-sm text-gray-600 dark:text-gray-400">{item.id}</td>
+                    <td className="px-4 py-2 border-b border-gray-400 text-center text-sm text-gray-600 dark:text-gray-400">
+                      {item.data.rentedBy.toString().slice(0, 6) +
+                        "..." +
+                        item.data.rentedBy.toString().slice(38, 42)}
+                    </td>
+                    <td className="px-4 py-2 border-b border-gray-400 text-center text-sm text-gray-600 dark:text-gray-400">
+                      {convertTimestampToDate(item.data.rentedTime)}
+                    </td>
+                    {isOwner && (
+                      <td className="px-4 py-2 border-b border-gray-400 text-center text-sm text-gray-600 dark:text-gray-400">
+                        {rentalStatus[item.id] === 'Relist' ? (
+                          <button onClick={() => Relist(item.id)} className="button-relist update-price">
+                            <strong>Relist</strong>
+                          </button>
+                        ) : rentalStatus[item.id] === 'Rented' ? (
+                            <p>Rented</p>
+                        ) : (
+                          <></>
+                        )}
+                      </td>
+                    )}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : ( 
+            <p className="text-gray-600 dark:text-gray-400">
+              None of the tokens are rented.
+            </p>
+          )}
+        </div>
+
         <div className="modal-footer mt-6">
           <button onClick={onClose} className="px-4 py-2 text-sm font-medium leading-5 text-white transition-transform transform duration-300 bg-gradient-to-r from-blue-500 to-purple-600 border border-transparent rounded-lg shadow-lg hover:scale-105 hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
             Close

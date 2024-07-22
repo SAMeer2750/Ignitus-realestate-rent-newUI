@@ -13,6 +13,12 @@
 
 .modal-container {
     width: 65%;
+    max-height: 90%;
+    overflow-y: scroll;
+}
+
+.modal-header button {
+    font-size: 2rem;
 }
 
 .modal-body {
@@ -58,10 +64,26 @@
     margin-right: 5%;
 }
 
-.rent-section{
-    margin: 0px;
-}
-
 .price{
     display: flex;
+}
+
+.collection{
+    font-size: smaller;
+    margin-top: -4px;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 50px;
+    border: solid transparent 2px;
+    background-clip: content-box;
+    background-color: #9ca3af39;
 }
