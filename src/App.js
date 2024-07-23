@@ -166,7 +166,7 @@ function App() {
           {showModal && (
             <Modal
               centered
-              size="xl"
+              size="lg"
               show={showModal}
               onHide={() => setShowModal(false)}
             >
@@ -193,13 +193,6 @@ function App() {
                       Switch to Polygon Amoy
                     </Button>
 
-                    <Button
-                      variant="primary"
-                      onClick={() => switchNetwork("polygonZkEVM")}
-                      className="button-modal"
-                    >
-                      Switch to Polygon ZkEVM
-                    </Button>
                   </div>
                 </ModalBody>
               </ModalDialog>
