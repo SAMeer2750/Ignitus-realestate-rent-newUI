@@ -2,7 +2,7 @@ const Sepholia_ContractAddress = "0xF52a48839A3EA26183a72e31c025A4D151cfB845";
 
 const PolyZkEVM_ContractAddress = "0xDD81111243c5Db738Aa073180e4339ac00245986";
 
-const PloyAmoy_ContractAddress = "0x85b22cDE84CF4Cb16080cB2e5a5f3BCf84240eF4";
+const PloyAmoy_ContractAddress = "0x5deeB88C300288EF40B75b0123586564cf84c7c3";
 
 const networks = {
   sepholia: {
@@ -25,7 +25,7 @@ const networks = {
       decimals: 18,
     },
     rpcUrls: ["https://polygon-amoy.drpc.org"],
-    blockExplorerUrls: ["https://mumbai.polygonscan.com/"],
+    blockExplorerUrls: ["https://amoy.polygonscan.com/"],
   },
   polygonZkEVM: {
     chainId: `0x${Number(2442).toString(16)}`,
@@ -528,7 +528,160 @@ const tokenAbi = [
   },
 ];
 
-const contractFactoryAbi = [
+const contractFactoryAbiPoly = [
+  {
+    inputs: [
+      {
+        internalType: "string",
+        name: "_name",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "_symbol",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "_baseURI",
+        type: "string",
+      },
+      {
+        internalType: "uint256",
+        name: "_totalSupply",
+        type: "uint256",
+      },
+    ],
+    name: "addProperty",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "getAllProperty",
+    outputs: [
+      {
+        internalType: "address[]",
+        name: "",
+        type: "address[]",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "getLatestPrice",
+    outputs: [
+      {
+        internalType: "int256",
+        name: "",
+        type: "int256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "rentInUSD",
+        type: "uint256",
+      },
+    ],
+    name: "getRentInETH",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "property",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "id",
+        type: "uint256",
+      },
+    ],
+    name: "getRentRecord",
+    outputs: [
+      {
+        components: [
+          {
+            internalType: "address",
+            name: "rentedBy",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "rentedTime",
+            type: "uint256",
+          },
+        ],
+        internalType: "struct RentFactory.RENT",
+        name: "",
+        type: "tuple",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "property",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "id",
+        type: "uint256",
+      },
+    ],
+    name: "relive",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "property",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "id",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "time",
+        type: "uint256",
+      },
+    ],
+    name: "rent",
+    outputs: [],
+    stateMutability: "payable",
+    type: "function",
+  },
+];
+
+const contractFactoryAbiSeph = [
   {
     inputs: [
       {
@@ -686,6 +839,7 @@ export {
   PolyZkEVM_ContractAddress,
   PloyAmoy_ContractAddress,
   tokenAbi,
-  contractFactoryAbi,
+  contractFactoryAbiPoly,
+  contractFactoryAbiSeph,
   networks,
 };

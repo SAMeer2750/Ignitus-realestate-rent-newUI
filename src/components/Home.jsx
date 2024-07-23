@@ -138,9 +138,6 @@ const Home = ({ factoryContract, tokenAbi, isConnected, account, signer, provide
         />
       )}
     </>
-
-
-
   );
 };
 

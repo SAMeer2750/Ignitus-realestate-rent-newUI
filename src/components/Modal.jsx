@@ -87,13 +87,14 @@ const Modal = ({ nft, onClose, factoryContract, network, account, tokenAbi, sign
 
   const Rent = async()=>{
     const time = days * 86400
-    const rentAmt = getRentInEth(price)
+    let rentAmt;
+    rentAmt = getRentInEth(price).toString()
     console.log(rentAmt);
     const tx = await factoryContract.rent(
       nft.address,
       id,
       time,
-      { gasLimit: 900000, value: rentAmt }
+      { gasLimit: 300000, value: rentAmt }
     )
     await tx.wait();
     setDays("")
@@ -160,7 +161,9 @@ const Modal = ({ nft, onClose, factoryContract, network, account, tokenAbi, sign
                 value={days}
                 onChange={(e) => {
                     setDays(e.target.value);
-                    setPrice((e.target.value)*10)}
+                    if(network=="Seph"){setPrice((e.target.value)*10)}
+                    else if(network=="Poly Amoy"){setPrice((e.target.value)/100)}
+                    }
                 }
                 className="input px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />

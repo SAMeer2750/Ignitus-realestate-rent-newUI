@@ -19,7 +19,8 @@ import { ethers } from "ethers";
 import {
   Sepholia_ContractAddress,
   tokenAbi,
-  contractFactoryAbi,
+  contractFactoryAbiSeph,
+  contractFactoryAbiPoly,
   PloyAmoy_ContractAddress,
   PolyZkEVM_ContractAddress,
   networks,
@@ -34,6 +35,7 @@ function App() {
   const [network, setNetwork] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [provider, setProvider] = useState(null);
+  const [contractFactoryAbi, setContractFactoryAbi] = useState(null);
 
   useEffect(() => {
     loadBcData();
@@ -52,25 +54,26 @@ function App() {
       const { chainId } = await provider.getNetwork();
       let contractInstance;
       if (chainId === 11155111) {
+        setContractFactoryAbi(contractFactoryAbiSeph);
         contractInstance = new ethers.Contract(
           Sepholia_ContractAddress,
-          contractFactoryAbi,
+          contractFactoryAbiSeph,
           signer
         );
         setContract(contractInstance);
         setNetwork("Seph");
         console.log(`connected to ${chainId}`);
       } else if (chainId === 80002) {
+        setContractFactoryAbi(contractFactoryAbiPoly);
         contractInstance = new ethers.Contract(
           PloyAmoy_ContractAddress,
-          contractFactoryAbi,
+          contractFactoryAbiPoly,
           signer
         );
         setContract(contractInstance);
         setNetwork("Poly Amoy");
         console.log(`connected to ${chainId}`);
-      }
-      else if(chainId == 2442){
+      } else if (chainId == 2442) {
         contractInstance = new ethers.Contract(
           PolyZkEVM_ContractAddress,
           contractFactoryAbi,
@@ -79,8 +82,7 @@ function App() {
         setContract(contractInstance);
         setNetwork("Poly ZkEVM");
         console.log(`connected to ${chainId}`);
-      }
-      else {
+      } else {
         setNetwork("");
         setShowModal(true);
       }
