@@ -16,9 +16,9 @@ function Nav({ connectWallet, account, network, setShowModal, loading }) {
             <Link to='/' className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white no-underline">Ignitus Networks</Link>
           </div>
 
-          <div className="flex justify-around w-full max-w-md">
-            <Link to="/home" className="no-underline text-gray-200 text-lg font-semibold transition-colors duration-300 hover:text-white hover:font-bold">Home</Link>
-            <Link to="/create" className="no-underline text-gray-200 text-lg font-semibold transition-colors duration-300 hover:text-white hover:font-bold">Create</Link>
+          <div className="flex justify-between w-full max-w-md">
+            <Link to="/home" className="px-3 no-underline text-gray-200 text-lg font-semibold transition-colors duration-300 hover:text-white hover:font-bold">Marketplace</Link>
+            <Link to="/create" className="px-3 no-underline text-gray-200 text-lg font-semibold transition-colors duration-300 hover:text-white hover:font-bold">Create</Link>
             {!account ? (
               <button onClick={connectWallet} type="button" className="connectWallet border-[0.5px] h-9 text-white bg-gradient-to-r from-purple-700 to-pink-800 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-md text-center me-2 mb-2">
                 Connect Wallet
