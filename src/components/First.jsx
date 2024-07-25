@@ -22,8 +22,8 @@ function First() {
         <div className="text-white flex flex-col md:flex-row justify-around items-center pt-15 min-h-screen bg-gray-900">
             <div className="mb-16 max-w-xl">
                 <h1 className="font-semibold text-5xl mb-8">
-                    Create and Watch Video <br />
-                    <span className="font-thin text-sky-400">Video NFTs</span>
+                    Create and Rent <br />
+                    <span className="font-thin text-sky-400">RealEstate NFTs</span>
                 </h1>
                 <Slider {...settings}>
                     <div className="text-xl font-thin">
