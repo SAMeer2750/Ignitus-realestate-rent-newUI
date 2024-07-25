@@ -27,19 +27,20 @@ function First() {
                 </h1>
                 <Slider {...settings}>
                     <div className="text-xl font-thin">
-                        <span className='text-sky-400 font-bold'>Welcome to VideoTron </span>– the premier platform for digital artistry and innovation in the world of Video NFTs. Dive into an immersive experience where creativity meets blockchain technology, enabling artists and collectors alike to create, showcase, and watch unique video masterpieces.
+                        <span className='text-sky-400 font-bold'>Welcome to RealEstate Rent </span>– innovative concept that leverages blockchain technology and decentralized finance (DeFi) to revolutionize the traditional real estate rental market. By integrating Web3 principles, this project aims to offer a more transparent, efficient, and secure way of renting properties. 
                     </div>
                     <div className="text-xl font-thin">
-                        <span className='text-sky-400 font-bold'>Create:</span> With our intuitive tools, transform your videos into one-of-a-kind NFTs. Whether it’s a captivating animation, a breathtaking short film, or an engaging motion graphic, your content is minted with a unique digital signature, ensuring authenticity and ownership.
+                        <span className='text-sky-400 font-bold'>Blockchain-Based Property Listings:</span> Property owners can list their rental properties on a blockchain platform, ensuring all listings are transparent, tamper-proof, and easily verifiable.
                     </div>
                     <div className="text-xl font-thin">
-                        <span className='text-sky-400 font-bold'>Watch:</span>  Explore a diverse gallery of Video NFTs created by talented artists from around the globe. Experience art in motion like never before, with each piece telling its own story and bringing a new perspective to the digital canvas.
+                        <span className='text-sky-400 font-bold'>Decentralized Identity Verification:</span>  Renters and property owners use decentralized identity (DID) systems to verify their identities. This adds an extra layer of security and reduces the risk of fraud.Reputation systems can be built on blockchain, allowing renters and owners to build trust through their rental history.
                     </div>
                     <div className="text-xl font-thin">
-                        <span className='text-sky-400 font-bold'>Connect:</span> Join a community of visionary creators and enthusiastic collectors. Participate in discussions, collaborate on projects, and be at the forefront of the Video NFT movement.
+                        <span className='text-sky-400 font-bold'>Tokenization of Real Estate:</span> Properties can be tokenized, allowing fractional ownership. This makes it easier for investors to buy shares in rental properties and receive rental income proportional to their investment.Token holders can trade their shares on secondary markets, providing liquidity and enabling easy entry and exit.
+
                     </div>
                     <div className="text-xl font-thin">
-                        <span className='text-sky-400 font-bold'>VideoTron</span>   is more than a platform; it’s a revolution in the digital art space. Unleash your creativity, discover extraordinary art, and be part of the future of video expression today.
+                        <span className='text-sky-400 font-bold'>Transparent and Fair Dispute Resolution:</span>   A decentralized dispute resolution system can be established to handle conflicts between renters and property owners. This system can use community voting or decentralized arbitration to ensure fair outcomes.All actions and resolutions are recorded on the blockchain for transparency.
                     </div>
                 </Slider>
             </div>
